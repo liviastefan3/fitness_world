@@ -1,3 +1,4 @@
+/* STILURI GENERALE (PENTRU ECRAN) */
 body {
     font-family: Arial, sans-serif;
     background-color: #121212; 
@@ -16,9 +17,35 @@ body {
     width: 100%;
     max-width: 400px;
 }
+/* Tema pentru Bărbați (Albastru Pal) */
+.tema-barbat {
+    border-top: 5px solid #add8e6; /*dungă subțire sus */
+}
+
+.tema-barbat h1, .tema-barbat summary {
+    color: #add8e6 !important;
+}
+
+.tema-barbat button {
+    background-color: #4682b4; /*pentru buton */
+}
+
+/* Tema pentru Femei (Roz Pal) */
+.tema-femeie {
+    border-top: 5px solid #ffb6c1;
+}
+
+.tema-femeie h1, .tema-femeie summary {
+    color: #ffb6c1 !important;
+}
+
+.tema-femeie button {
+    background-color: #ffb6c1;
+    color: #333; 
+}
 
 h1 {
-    color: #ff5722; 
+    color: #6bd14f; 
     font-size: 24px;
 }
 
@@ -33,14 +60,14 @@ select, button {
 }
 
 button {
-    background-color: #ff5722;
+    background-color: #6bd14f;
     color: white;
     cursor: pointer;
     transition: 0.3s;
 }
 
 button:hover {
-    background-color: #e64a19; 
+    background-color: #051701; 
 }
 
 #cutieRezultat {
@@ -52,17 +79,52 @@ button:hover {
     line-height: 1.6;
 }
 
+/*DESIGN PENTRU ZILELE CARE SE DESCHID (TOT PE ECRAN)*/
+.zi-antrenament {
+    background-color: #060415;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    padding: 12px;
+    text-align: left;
+    transition: 0.3s;
+}
+
+.zi-antrenament summary {
+    cursor: pointer;
+    font-size: 22px; 
+    color: #713468;
+    font-weight: bold;
+    outline: none;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #444;
+}
+
+.zi-antrenament summary:hover {
+    color: #251921;
+}
+
+.zi-antrenament[open] summary {
+    color: #c779ae;
+    border-bottom: 1px solid #faf7fa;
+}
+
+.lista-exercitii {
+    margin-top: 15px;
+    padding-left: 15px;
+    border-left: 3px solid #fafafc;
+    color: #fdfcfd;
+    font-size: 14.5px;
+}
+
+.lista-exercitii p {
+    margin-bottom: 5px;
+}
+
+/* REGULI DOAR PENTRU PRINTARE (CAND DESCHIZI PDF-UL) */
 @media print {
-
-    select, button {
+    select, button, p:not(.lista-exercitii p) {
         display: none !important;
     }
-    
-
-    .container > p {
-        display: none !important;
-    }
-    
 
     body, .container {
         background-color: white !important;
@@ -76,5 +138,10 @@ button:hover {
         background-color: white !important;
         color: black !important;
         border: 2px solid #333; 
+    }
+
+    .zi-antrenament {
+        background-color: white !important;
+        border: 1px solid #ccc;
     }
 }

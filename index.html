@@ -23,7 +23,12 @@
             <option value="barbat">Bărbat</option>
             <option value="femeie">Femeie</option>
         </select>
-
+        <p>Nivelul tău:</p>
+        <select id="alegereNivel">
+            <option value="incepator">Începător</option>
+            <option value="intermediar">Intermediar</option>
+            <option value="avansat">Avansat</option>
+        </select>
         <p>Câte zile pe săptămână mergi la sală?</p>
         <select id="alegereZile">
             <option value="3">3 zile pe săptămână</option>
@@ -34,7 +39,7 @@
         <button onclick="genereazaProgram()">Generează Programul</button>
 
         <div id="cutieRezultat">
-            Alege opțiunile și apasă butonul pentru program!
+            Alege opțiunile și apasă butonul pentru generarea programului!
         </div>
         <button id="butonPrint" onclick="printeaza()" style="display: none; background-color: #4CAF50; margin-top: 15px;">🖨️ Salvează ca PDF / Printează</button>
     </div>
