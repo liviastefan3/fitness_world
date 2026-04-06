@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Generator Split Antrenament</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="container">
+        <h1>🏋️‍♂️ Generator de Split-uri</h1>
+        
+        <p>Alege sexul:</p>
+        <select id="alegereGen">
+            <option value="barbat">Bărbat</option>
+            <option value="femeie">Femeie</option>
+        </select>
+
+        <p>Câte zile pe săptămână mergi la sală?</p>
+        <select id="alegereZile">
+            <option value="3">3 zile pe săptămână</option>
+            <option value="4">4 zile pe săptămână</option>
+            <option value="5">5 zile pe săptămână</option>
+        </select>
+
+        <button onclick="genereazaProgram()">Generează Programul</button>
+
+        <div id="cutieRezultat">
+            Alege opțiunile și apasă butonul pentru program!
+        </div>
+        <button id="butonPrint" onclick="printeaza()" style="display: none; background-color: #4CAF50; margin-top: 15px;">🖨️ Salvează ca PDF / Printează</button>
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
