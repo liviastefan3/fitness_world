@@ -42,6 +42,42 @@
             Alege opțiunile și apasă butonul pentru generarea programului!
         </div>
         <button id="butonPrint" onclick="printeaza()" style="display: none; background-color: #4CAF50; margin-top: 15px;">🖨️ Salvează ca PDF / Printează</button>
+        <!-- --- CALCULATOR MACRONUTRIENȚI --- -->
+        <hr style="margin: 25px 0; border: 1px solid #333;">
+        <h3>🥗 Calculator Calorii & Macro</h3>
+        
+        <p>Vârstă (ani):</p>
+        <input type="number" id="macroVarsta" placeholder="Ex: 24">
+
+        <p>Greutate (kg):</p>
+        <input type="number" id="macroGreutate" placeholder="Ex: 70">
+
+        <p>Înălțime (cm):</p>
+        <input type="number" id="macroInaltime" placeholder="Ex: 175">
+
+        <p>Obiectivul tău:</p>
+        <select id="macroObiectiv">
+            <option value="mentinere">Menținere greutate</option>
+            <option value="slabire">Slăbire / Definire (-400 kcal)</option>
+            <option value="masa">Creștere masă musculară (+300 kcal)</option>
+        </select>
+
+        <button onclick="calculeazaMacro()" style="background-color: #2196F3;">Calculează Macro</button>
+        <div id="rezultatMacro" style="display:none; margin-top:15px; background:#222; padding:12px; border-radius:6px; font-size:14px; text-align:left;"></div>
+
+        <!-- --- ASISTENT CHAT FITNESS --- -->
+        <hr style="margin: 25px 0; border: 1px solid #333;">
+        <h3>💬 Coach Virtual (Înlocuiri exerciții)</h3>
+        <p style="font-size: 13px; color: #aaa;">Întreabă cu ce poți înlocui un exercițiu sau cum să îl execuți corect:</p>
+
+        <div id="istoricChat" style="max-height: 180px; overflow-y: auto; background: #161616; padding: 10px; border-radius: 6px; text-align: left; font-size: 13.5px; border: 1px solid #333; margin-bottom: 10px;">
+            <p style="color: #4CAF50; margin: 0;"><strong>Coach:</strong> Salut! Cu ce exercițiu ai nevoie de ajutor sau înlocuire?</p>
+        </div>
+
+        <div style="display: flex; gap: 8px;">
+            <input type="text" id="mesajChat" placeholder="Ex: Cu ce pot înlocui tracțiunile?" style="margin-top:0;">
+            <button onclick="trimiteMesajChat()" style="margin-top:0; width: auto; padding: 10px 16px; background-color: #9C27B0;">Trimite</button>
+        </div>
     </div>
 
     <script src="script.js"></script>

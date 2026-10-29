@@ -14,7 +14,7 @@ function genereazaProgram() {
         container.classList.remove("tema-barbat");
     }
 
-    // //pt 3 zile
+    // --- LOGICA PENTRU 3 ZILE ---
     if (zileAlese === "3") {
         if (genAles === "barbat") {
             if (nivelAles === "incepator") {
@@ -52,8 +52,8 @@ function genereazaProgram() {
             }
         }
     }
-    //PENTRU 4 ZILE
 
+    // --- LOGICA PENTRU 4 ZILE ---
     else if (zileAlese === "4") {
         if (genAles === "barbat") {
             if (nivelAles === "incepator") {
@@ -92,7 +92,7 @@ function genereazaProgram() {
         }
     }
 
-//pt 5 zile
+    // --- LOGICA PENTRU 5 ZILE ---
     else if (zileAlese === "5") {
         if (genAles === "barbat") {
             if (nivelAles === "incepator") {
@@ -140,4 +140,119 @@ function genereazaProgram() {
     document.getElementById("butonPrint").style.display = "block";
 }
 
-function printeaza() { window.print(); }
+function printeaza() { 
+    window.print(); 
+}
+
+// --- 1. CALCULATORUL DE MACRONUTRIENȚI ---
+function calculeazaMacro() {
+    let gen = document.getElementById("alegereGen").value;
+    let varsta = parseFloat(document.getElementById("macroVarsta").value);
+    let greutate = parseFloat(document.getElementById("macroGreutate").value);
+    let inaltime = parseFloat(document.getElementById("macroInaltime").value);
+    let obiectiv = document.getElementById("macroObiectiv").value;
+    let cutie = document.getElementById("rezultatMacro");
+
+    if (!varsta || !greutate || !inaltime) {
+        alert("Te rugăm să completezi vârsta, greutatea și înălțimea!");
+        return;
+    }
+
+    // Formula Mifflin-St Jeor pentru Rata Metabolică Bazală (BMR)
+    let bmr = 0;
+    if (gen === "barbat") {
+        bmr = (10 * greutate) + (6.25 * inaltime) - (5 * varsta) + 5;
+    } else {
+        bmr = (10 * greutate) + (6.25 * inaltime) - (5 * varsta) - 161;
+    }
+
+    // Nivel activitate mediu pentru sală (~3-4 zile/săptămână) = factor 1.45
+    let caloriiMentinere = Math.round(bmr * 1.45);
+    let caloriiTinta = caloriiMentinere;
+
+    if (obiectiv === "slabire") {
+        caloriiTinta -= 400;
+    } else if (obiectiv === "masa") {
+        caloriiTinta += 300;
+    }
+
+    // Distribuție standard macro: Proteine 2g/kg, Grăsimi 0.9g/kg
+    let proteine = Math.round(greutate * 2.0);
+    let grasimi = Math.round(greutate * 0.9);
+    let caloriiDinProtSiGrasimi = (proteine * 4) + (grasimi * 9);
+    let carbohidrati = Math.max(0, Math.round((caloriiTinta - caloriiDinProtSiGrasimi) / 4));
+
+    cutie.innerHTML = `
+        <h4 style="margin: 0 0 8px 0; color: #2196F3;">Ținta ta zilnică (${obiectiv.toUpperCase()}):</h4>
+        <p>🔥 <strong>Calorii totale:</strong> ${caloriiTinta} kcal/zi</p>
+        <p>🥩 <strong>Proteine:</strong> ${proteine}g (${proteine * 4} kcal)</p>
+        <p>🥑 <strong>Grăsimi:</strong> ${grasimi}g (${grasimi * 9} kcal)</p>
+        <p>🍚 <strong>Carbohidrați:</strong> ${carbohidrati}g (${carbohidrati * 4} kcal)</p>
+    `;
+    cutie.style.display = "block";
+}
+
+// --- AGENT AI REAL (GEMINI API) ---
+// --- AGENT AI REAL (GEMINI API) ---
+async function trimiteMesajChat() {
+    let input = document.getElementById("mesajChat");
+    let text = input.value.trim();
+    let istoric = document.getElementById("istoricChat");
+
+    if (!text) return;
+
+    // 1. Afișează mesajul tău în chat
+    istoric.innerHTML += `<p class="mesaj-user"><strong>Tu:</strong> ${text}</p>`;
+    input.value = "";
+
+    // 2. Afișează loader-ul
+    let loaderId = "loadingAI_" + Date.now();
+    istoric.innerHTML += `<p class="mesaj-coach" id="${loaderId}"><strong>Coach AI:</strong> ⏳ Se gândește...</p>`;
+    istoric.scrollTop = istoric.scrollHeight;
+
+    // 3. Cheia ta API validă
+    const API_KEY = "AQ.Ab8RN6LSCKPdoCRE2rd1aqk68fGeDnwAibkItX7UqngLVbC44A";
+
+    const promptSistem = `Ești un antrenor personal certificat de fitness. Răspunde strict în limba română, scurt și aplicat (maxim 3 fraze), oferind alternative concrete pentru următoarea cerință: "${text}"`;
+
+    try {
+        const response = await fetch("https://generativelanguage.googleapis.com/v1beta/models/gemini-3.8-flash:generateContent", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "x-goog-api-key": API_KEY
+            },
+            body: JSON.stringify({
+                contents: [{
+                    parts: [{ text: promptSistem }]
+                }]
+            })
+        });
+
+        const data = await response.json();
+
+        // Elimină loader-ul
+        const loaderElem = document.getElementById(loaderId);
+        if (loaderElem) loaderElem.remove();
+
+        if (data.error) {
+            istoric.innerHTML += `<p class="mesaj-coach" style="color: #ff5252;"><strong>Eroare:</strong> ${data.error.message}</p>`;
+            return;
+        }
+
+        if (data.candidates && data.candidates[0].content && data.candidates[0].content.parts && data.candidates[0].content.parts[0].text) {
+            let raspunsAI = data.candidates[0].content.parts[0].text;
+            istoric.innerHTML += `<p class="mesaj-coach"><strong>Coach AI:</strong> ${raspunsAI}</p>`;
+        } else {
+            istoric.innerHTML += `<p class="mesaj-coach" style="color: #ff5252;"><strong>Coach AI:</strong> Nu am primit un răspuns valid.</p>`;
+        }
+
+    } catch (eroare) {
+        const loaderElem = document.getElementById(loaderId);
+        if (loaderElem) loaderElem.remove();
+        istoric.innerHTML += `<p class="mesaj-coach" style="color: #ff5252;"><strong>Coach AI:</strong> Eroare de rețea: ${eroare.message}</p>`;
+        console.error("Eroare API:", eroare);
+    }
+
+    istoric.scrollTop = istoric.scrollHeight;
+}
