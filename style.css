@@ -1,0 +1,173 @@
+/* STILURI GENERALE (PENTRU ECRAN) */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #121212; 
+    color: #ffffff;
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+}
+
+.container {
+    background-color: #1e1e1e;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    width: 100%;
+    max-width: 400px;
+}
+/* Tema pentru Bărbați (Albastru Pal) */
+.tema-barbat {
+    border-top: 5px solid #add8e6; /*dungă subțire sus */
+}
+
+.tema-barbat h1, .tema-barbat summary {
+    color: #add8e6 !important;
+}
+
+.tema-barbat button {
+    background-color: #4682b4; /*pentru buton */
+}
+
+/* Tema pentru Femei (Roz Pal) */
+.tema-femeie {
+    border-top: 5px solid #ffb6c1;
+}
+
+.tema-femeie h1, .tema-femeie summary {
+    color: #ffb6c1 !important;
+}
+
+.tema-femeie button {
+    background-color: #ffb6c1;
+    color: #333; 
+}
+
+h1 {
+    color: #6bd14f; 
+    font-size: 24px;
+}
+
+select, button {
+    width: 100%;
+    padding: 12px;
+    margin-top: 15px;
+    border-radius: 6px;
+    border: none;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+button {
+    background-color: #6bd14f;
+    color: white;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    background-color: #051701; 
+}
+
+#cutieRezultat {
+    margin-top: 25px;
+    padding: 15px;
+    background-color: #2a2a2a;
+    border-radius: 6px;
+    font-size: 15px;
+    line-height: 1.6;
+}
+
+/*DESIGN PENTRU ZILELE CARE SE DESCHID (TOT PE ECRAN)*/
+.zi-antrenament {
+    background-color: #060415;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    padding: 12px;
+    text-align: left;
+    transition: 0.3s;
+}
+
+.zi-antrenament summary {
+    cursor: pointer;
+    font-size: 22px; 
+    color: #713468;
+    font-weight: bold;
+    outline: none;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #444;
+}
+
+.zi-antrenament summary:hover {
+    color: #251921;
+}
+
+.zi-antrenament[open] summary {
+    color: #c779ae;
+    border-bottom: 1px solid #faf7fa;
+}
+
+.lista-exercitii {
+    margin-top: 15px;
+    padding-left: 15px;
+    border-left: 3px solid #fafafc;
+    color: #fdfcfd;
+    font-size: 14.5px;
+}
+
+.lista-exercitii p {
+    margin-bottom: 5px;
+}
+
+/* REGULI DOAR PENTRU PRINTARE (CAND DESCHIZI PDF-UL) */
+@media print {
+    select, button, p:not(.lista-exercitii p) {
+        display: none !important;
+    }
+
+    body, .container {
+        background-color: white !important;
+        color: black !important;
+        box-shadow: none !important;
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+
+    #cutieRezultat {
+        background-color: white !important;
+        color: black !important;
+        border: 2px solid #333; 
+    }
+
+    .zi-antrenament {
+        background-color: white !important;
+        border: 1px solid #ccc;
+    }
+}
+input[type="number"], input[type="text"] {
+    width: 100%;
+    padding: 12px;
+    margin-top: 8px;
+    border-radius: 6px;
+    border: 1px solid #444;
+    background-color: #2a2a2a;
+    color: #ffffff;
+    font-size: 15px;
+    box-sizing: border-box;
+    outline: none;
+}
+
+input[type="number"]:focus, input[type="text"]:focus {
+    border-color: #ff5722;
+}
+
+.mesaj-user {
+    color: #add8e6;
+    margin-bottom: 6px;
+}
+
+.mesaj-coach {
+    color: #4CAF50;
+    margin-bottom: 6px;
+}
