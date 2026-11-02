@@ -17,9 +17,9 @@ A modern, full-stack web application designed for fitness, healthy recipes, and 
 
 ## 🛠️ Tech Stack
 
-- **Frontend:** HTML5, CSS3, JavaScript (Vanilla ES6+)
-- **Backend:** Node.js, Express.js
-- **Artificial Intelligence:** Google Gemini API (`@google/genai` / REST)
+- **Frontend:** HTML, CSS, JavaScript 
+- **Backend:** Node.js
+- **Artificial Intelligence:** Google Gemini API 
 - **DevOps & Cloud:** Docker, Google Cloud Run, Google Cloud Build
 
 ---
