@@ -1,32 +1,38 @@
 # 🏋️ Fitness World & AI Coach
 
-O aplicație web full-stack dedicată fitness-ului și nutriției sănătoase, dotată cu un asistent virtual inteligent bazat pe **Google Gemini API** pentru recomandări de antrenament și înlocuiri de exerciții în timp real.
+A modern, full-stack web application designed for fitness, healthy recipes, and workout guidance, featuring an AI-powered virtual coach integrated with the **Google Gemini API** for real-time exercise recommendations and alternatives.
 
-🌐 **Demo Live:** [https://fitness-world-658420120838.europe-west1.run.app](https://fitness-world-658420120838.europe-west1.run.app)
-
----
-
-## ✨ Funcționalități principale
-
-- **Virtual Coach (AI):** Recomandări personalizate pentru execuția și înlocuirea exercițiilor fizice folosind Gemini.
-- **Interfață modernă & responsive:** Design intuitiv adaptat pentru desktop și mobil.
-- **Backend securizat:** Node.js/Express pentru apeluri proxy către API, protejând cheile secrete.
-- **Containerizare & Cloud:** Împachetat în Docker și găzduit pe Google Cloud Run.
+🌐 **Live Demo:** [https://fitness-world-658420120838.europe-west1.run.app](https://fitness-world-658420120838.europe-west1.run.app)
 
 ---
 
-## 🛠️ Tehnologii utilizate
+## ✨ Key Features
+
+- **Virtual AI Coach:** Get instant, personalized guidance and exercise alternatives powered by Google Gemini.
+- **Responsive & Modern UI:** Optimized user experience across mobile and desktop devices.
+- **Secure Backend:** Node.js/Express reverse-proxy server handling API requests to keep credentials secure.
+- **Containerized & Cloud-Native:** Packaged with Docker and deployed on Google Cloud Run.
+
+---
+
+## 🛠️ Tech Stack
 
 - **Frontend:** HTML5, CSS3, JavaScript (Vanilla ES6+)
 - **Backend:** Node.js, Express.js
-- **Inteligență Artificială:** Google Gemini API (`@google/genai` / REST)
+- **Artificial Intelligence:** Google Gemini API (`@google/genai` / REST)
 - **DevOps & Cloud:** Docker, Google Cloud Run, Google Cloud Build
 
 ---
 
-## 🚀 Rulare locală
+## 🚀 Getting Started Locally
 
-### 1. Clonare repozitoriu
+### Prerequisites
+
+- [Node.js](https://nodejs.org/) (v18 or higher recommended)
+- [Git](https://git-scm.com/)
+- A Google Gemini API Key (from [Google AI Studio](https://aistudio.google.com/))
+
+### 1. Clone the repository
 ```bash
 git clone [https://github.com/liviastefan3/fitness_world.git](https://github.com/liviastefan3/fitness_world.git)
 cd fitness_world
